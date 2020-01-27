@@ -7,6 +7,8 @@ namespace console_library
   {
     static void Main(string[] args)
     {
+
+      Console.Clear();
       Book whereTheSidewalkEnds = new Book("Where the Sidewalk Ends", "Shel Silverstein");
 
       Book ancillaryJustice = new Book("Ancillary Justice", "Ann Leckie");
@@ -19,12 +21,14 @@ namespace console_library
       myLibrary.AddBook(ancillaryJustice);
       myLibrary.AddBook(aART);
 
-      System.Console.WriteLine("Welcome to the Library!");
+      System.Console.WriteLine("Welcome to the Library!\n");
       System.Console.WriteLine("Available books:");
 
       myLibrary.PrintBooks();
 
-      System.Console.WriteLine("Select a book number to checkout, (q)uit, or (r)eturn a book");
+      System.Console.WriteLine("\nSelect a book number to checkout, (q)uit, or (r)eturn a book");
+      string selection = Console.ReadLine();
+      myLibrary.Checkout(selection);
 
     }
   }

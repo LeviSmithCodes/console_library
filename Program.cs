@@ -5,9 +5,15 @@ namespace console_library
 {
   class Program
   {
+    public enum Menus
+    {
+      CheckoutBook,
+      ReturnBook
+    }
     static void Main(string[] args)
     {
-
+      Enum activeMenu = Menus.CheckoutBook;
+      bool inLibrary = true;
       Console.Clear();
       Book whereTheSidewalkEnds = new Book("Where the Sidewalk Ends", "Shel Silverstein");
 
@@ -22,14 +28,23 @@ namespace console_library
       myLibrary.AddBook(aART);
 
       System.Console.WriteLine("Welcome to the Library!\n");
-      System.Console.WriteLine("Available books:");
 
-      myLibrary.PrintBooks();
+      while (inLibrary)
+      {
+        System.Console.WriteLine("\nAvailable books:");
+        myLibrary.PrintBooks();
 
-      System.Console.WriteLine("\nSelect a book number to checkout, (q)uit, or (r)eturn a book");
-      string selection = Console.ReadLine();
-      myLibrary.Checkout(selection);
-
+        System.Console.WriteLine("\nSelect a book number to checkout, (q)uit, or (r)eturn a book");
+        string selection = Console.ReadLine();
+        if (selection.ToLower() == "q")
+        {
+          inLibrary = false;
+        }
+        else
+        {
+          myLibrary.Checkout(selection);
+        }
+      }
     }
   }
 }

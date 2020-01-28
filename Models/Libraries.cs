@@ -35,6 +35,25 @@ namespace console_library.Models
       }
 
     }
+
+    public void Return(string selection)
+    {
+      System.Console.Clear();
+      Book selectedBook = ValidateBook(selection, Books);
+      if (selectedBook == null)
+      {
+        System.Console.Clear();
+        System.Console.WriteLine("Invalid Selection\n");
+        return;
+      }
+      selectedBook.Available = true;
+      CheckedOut.Remove(selectedBook);
+      Books.Add(selectedBook);
+      System.Console.WriteLine("Book successfully returned!");
+
+
+    }
+
     private Book ValidateBook(string selection, List<Book> bookList)
     {
       int bookIndex = 0;
